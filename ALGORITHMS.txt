@@ -1,0 +1,100 @@
+ll binary_exponentiation(ll &a,ll &n)
+{
+    if(n == 0)
+    return 1;
+    if(n & 1)
+    return (a % inf * binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf) % inf;
+    else
+    return binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf;
+}
+
+string add(string num1,string num2,int base)
+{
+    string A,B,result;
+    if(num1.length() > num2.length())
+    {
+        A = num1;
+        B = num2;
+    }
+    else
+    {
+        A = num2;
+        B = num1;
+    }
+    reverse(A.begin(),A.end());
+    reverse(B.begin(),B.end());
+    int carry = 0;
+    for(int i = 0; A[i]; ++i)
+    if(B[i] == '\0')
+    {
+        while(A[i])
+        {
+            int a = A[i] - '0';
+            int sum = a + carry;
+            result.push_back(sum % base + '0');
+            carry = sum / base;
+            i++;    
+        }
+        break;
+    }
+    else
+    {
+        int a = A[i] - '0';
+        int b = B[i] - '0';
+        int sum = a + b + carry;
+        result.push_back(sum % base + '0');
+        carry = sum / base;
+    }
+    if(carry > 0)
+    result.push_back(carry + '0');
+    reverse(result.begin(),result.end());
+    return result;
+}
+
+
+
+typedef struct Segment_Tree
+{
+    int left_index,right_index;
+    ll val;
+    struct Segment_Tree *left_child = nullptr,*right_child = nullptr;
+}Segment_Tree;
+
+Segment_Tree * create_segment_tree(int l,int r,vi &vec)
+{
+    Segment_Tree * temp = new Segment_Tree();
+    temp->left_index = l;
+    temp->right_index = r;
+    if(l == r)
+    temp->val = vec.at(l);
+    else
+    {
+        temp->left_child = create_segment_tree(l,(l + r) / 2,vec);
+        temp->right_child = create_segment_tree((l + r) / 2 + 1,r,vec);
+        temp->val = temp->left_child->val + temp->right_child->val;
+    }
+    return temp;
+}
+
+Segment_Tree * update(Segment_Tree *root,int index,int val)
+{
+    if(root->left_index == root->right_index && root->left_index == index)
+    root->val += val;
+    else if(index <= root->right_index && index >= root->left_index)
+    {
+        root->left_child = update(root->left_child,index,val);
+        root->right_child = update(root->right_child,index,val);
+        root->val = root->left_child->val + root->right_child->val;
+    }
+    return root;
+}
+
+ll Segment_Tree_sum(Segment_Tree * root,int l,int r)
+{
+    if(root->left_index > r || root->right_index < l)
+    return 0;
+    else if(root->left_index >= l && root->right_index <= r)
+    return root->val;
+    else
+    return Segment_Tree_sum(root->left_child,l,r) + Segment_Tree_sum(root->right_child,l,r);
+}
