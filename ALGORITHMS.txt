@@ -8,6 +8,19 @@ ll binary_exponentiation(ll &a,ll &n)
     return binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf;
 }
 
+void sieve_of_eratosthenes()
+{
+    vb prime(1000001,true);
+    prime[1] = false;
+    for(int p = 2; p <= 1000; ++p)
+    {
+        if(!prime.at(p))
+        continue;
+        for(int q = p * p; q <= 1000000; q += p)
+        prime.at(q) = false;
+    }
+}
+
 string add(string num1,string num2,int base)
 {
     string A,B,result;
