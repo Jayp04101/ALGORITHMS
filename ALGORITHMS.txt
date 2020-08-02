@@ -25,7 +25,10 @@ using namespace std;
 #define f(i,a,b) for(int i = a; i < b; ++i)
 #define fr(i,a,b) for(int i = a; i > b; --i)
 
-ll binary_exponentiation(ll &a,ll &n)
+
+
+
+ll binary_exponentiation(const ll &a,const ll &n)
 {
     if(n == 0)
     return 1;
@@ -137,4 +140,35 @@ ll Segment_Tree_sum(Segment_Tree * root,int l,int r)
     return root->val;
     else
     return Segment_Tree_sum(root->left_child,l,r) + Segment_Tree_sum(root->right_child,l,r);
+}
+
+
+void djikstra(vvpii &city,int src)
+{
+    pqpii pq;
+    pq.push({0,src});
+    vi dist(city.size()+1,INT_MAX),path(city.size()+1);
+    vb spt(city.size()+1);
+    dist[src] = 0;
+    path[src] = src;
+    spt[src] = true;
+    while(!pq.empty())
+    {
+        for(pii node:city[src])
+        {
+            if(spt[node.first] == false && dist[src] + node.second < dist[node.first])
+            dist[node.first] = dist[src] + node.second,path[node.first] = src,pq.push({dist[node.first],node.first});
+        }
+        while(!pq.empty())
+        {
+            pii temp = pq.top();
+            if(spt[temp.second] == false)
+            {
+                spt[temp.second] = true;
+                src = temp.second;
+                break;
+            }
+            pq.pop();
+        }
+    } 
 }
