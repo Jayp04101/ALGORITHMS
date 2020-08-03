@@ -143,7 +143,7 @@ ll Segment_Tree_sum(Segment_Tree * root,int l,int r)
 }
 
 
-void djikstra(vvpii &city,int src)
+void dijkstra(vvpii &city,int src)
 {
     pqpii pq;
     pq.push({0,src});
