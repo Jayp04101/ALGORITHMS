@@ -172,3 +172,33 @@ void dijkstra(vvpii &city,int src)
         }
     } 
 }
+
+
+int dsu_root(vi &vec,int i)
+{
+    while(vec[i] != i)
+    {
+        vec[i] = vec[vec[i]];
+        i = vec[i];
+    }
+    return i;
+}
+
+
+void dsu_union_operation(vi &arr,vi &size,int a,int b)
+{
+    int root_a = dsu_root(arr,a);
+    int root_b = dsu_root(arr,b);
+    if(root_a == root_b)
+        return;
+    if(size[root_a] < size[root_b])
+    {
+        size[root_b] += size[root_a];
+        arr[root_a] = root_b;
+    }
+    else
+    {
+        size[root_a] += size[root_b];
+        arr[root_b] = root_a;
+    }
+}
