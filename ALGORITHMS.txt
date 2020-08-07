@@ -3,9 +3,9 @@ ll binary_exponentiation(const ll &a,const ll &n)
     if(n == 0)
     return 1;
     if(n & 1)
-    return (a % inf * binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf) % inf;
+    return (a % inf * binary_exponentiation((a % inf) * (a % inf) % inf,n / 2) % inf) % inf;
     else
-    return binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf;
+    return binary_exponentiation((a % inf) * (a % inf) % inf,n / 2) % inf;
 }
 
 void sieve_of_eratosthenes(vb &prime)
