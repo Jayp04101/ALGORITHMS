@@ -116,17 +116,17 @@ void dijkstra(vvpii &city,int src)
 {
     pqpii pq;
     pq.push({0,src});
-    vi dist(city.size()+1,INT_MAX),path(city.size()+1);
-    vb spt(city.size()+1);
+    vi dist(city.size(),INT_MAX),path;
+    vb spt(city.size());
     dist[src] = 0;
-    path[src] = src;
+    path.push_back(src);
     spt[src] = true;
     while(!pq.empty())
     {
         for(pii node:city[src])
         {
             if(spt[node.first] == false && dist[src] + node.second < dist[node.first])
-            dist[node.first] = dist[src] + node.second,path[node.first] = src,pq.push({dist[node.first],node.first});
+            dist[node.first] = dist[src] + node.second,pq.push({dist[node.first],node.first});
         }
         while(!pq.empty())
         {
@@ -135,6 +135,7 @@ void dijkstra(vvpii &city,int src)
             {
                 spt[temp.second] = true;
                 src = temp.second;
+                path.push_back(src);
                 break;
             }
             pq.pop();
