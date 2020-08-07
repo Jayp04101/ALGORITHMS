@@ -105,5 +105,55 @@
     		"\t}",
 			"}"
 		]
+	},
+	"ALGORITHMS_SIEVE_OF_ERATOSTHENES":{
+		"prefix": "sieve_of_eratosthenes",
+		"body": [
+			"void sieve_of_eratosthenes(vb &prime)",
+			"{",
+    		"\tprime[1] = false;",
+    		"\tfor(int p = 2; p <= 1000; ++p)",
+    		"\t{",
+        	"\t\tif(!prime.at(p))",
+        	"\t\tcontinue;",
+        	"\t\tfor(int q = p * p; q <= 1000000; q += p)",
+        	"\t\tprime.at(q) = false;",
+    		"\t}",
+			"}"
+		]
+	},
+	"ALGORITHMS_DIJKSTRA":{
+		"prefix": "dijkstra",
+		"body": [
+			"void dijkstra(vvpii &city,int src)",
+			"{",
+    		"\tpqpii pq;",
+    		"\tpq.push({0,src});",
+    		"\tvi dist(city.size(),INT_MAX),path;",
+    		"\tvb spt(city.size());",
+    		"\tdist[src] = 0;",
+			"\tpath.push_back(src);",
+    		"\tspt[src] = true;",
+    		"\twhile(!pq.empty())",
+    		"\t{",
+        	"\t\tfor(pii node:city[src])",
+        	"\t\t{",
+            "\t\t\tif(spt[node.first] == false && dist[src] + node.second < dist[node.first])",
+            "\t\t\tdist[node.first] = dist[src] + node.second,pq.push({dist[node.first],node.first});",
+        	"\t\t}",
+        	"\t\twhile(!pq.empty())",
+        	"\t\t{",
+            "\t\t\tpii temp = pq.top();",
+            "\t\t\tif(spt[temp.second] == false)",
+            "\t\t\t{",
+            "\t\t\t\tspt[temp.second] = true;",
+            "\t\t\t\tsrc = temp.second;",
+            "\t\t\t\tbreak;",
+            "\t\t\t}",
+            "\t\t\tpq.pop();",
+        	"\t\t}",
+    		"\t}", 
+			"}"
+		]
 	}
 }
