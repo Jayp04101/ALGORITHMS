@@ -8,9 +8,8 @@ ll binary_exponentiation(const ll &a,const ll &n)
     return binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf;
 }
 
-void sieve_of_eratosthenes()
+void sieve_of_eratosthenes(vb &prime)
 {
-    vb prime(1000001,true);
     prime[1] = false;
     for(int p = 2; p <= 1000; ++p)
     {
