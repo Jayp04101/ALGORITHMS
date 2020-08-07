@@ -57,7 +57,7 @@
 		"}"
 	]
 	},
-	"ALGORITHMS":{
+	"ALGORITHMS_BINARY_EXPONENTIATION":{
 		"prefix": "binary_exponentiation",
 		"body": [
 			"ll binary_exponentiation(const ll &a,const ll &n)",
@@ -67,6 +67,42 @@
     		"\tif(n & 1)",
     		"\treturn (a % inf * binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf) % inf;",
     		"\treturn binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf;",
+			"}"
+		]
+	},
+	"ALGORITHMS_DSU_ROOT":{
+		"prefix": "dsu_root",
+		"body": [
+			"int dsu_root(vi &vec,int i)",
+			"{",
+    		"\twhile(vec[i] != i)",
+    		"\t{",
+        	"\t\tvec[i] = vec[vec[i]];",
+        	"\t\ti = vec[i];",
+    		"\t}",
+    		"\treturn i;",
+			"}"
+		]
+	},
+	"ALGORITHMS_DSU_UNION_FIND":{
+		"prefix": "dsu_union_find",
+		"body": [
+			"void dsu_union_find(vi &arr,vi &size,int a,int b)",
+			"{",
+    		"\tint root_a = dsu_root(arr,a);",
+    		"\tint root_b = dsu_root(arr,b);",
+    		"\tif(root_a == root_b)",
+        	"\treturn;",
+    		"\tif(size[root_a] < size[root_b])",
+    		"\t{",
+        	"\t\tsize[root_b] += size[root_a];",
+        	"\t\tarr[root_a] = root_b;",
+    		"\t}",
+    		"\telse",
+    		"\t{",
+        	"\t\tsize[root_a] += size[root_b];",
+        	"\t\tarr[root_b] = root_a;",
+    		"\t}",
 			"}"
 		]
 	}
