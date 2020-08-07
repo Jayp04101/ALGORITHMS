@@ -65,8 +65,8 @@
     		"\tif(n == 0)",
     		"\treturn 1;",
     		"\tif(n & 1)",
-    		"\treturn (a % inf * binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf) % inf;",
-    		"\treturn binary_exponentiation((a % inf * a % inf) % inf,n / 2) % inf;",
+    		"\treturn (a % inf) * (binary_exponentiation((a % inf) * (a % inf) % inf,n / 2) % inf) % inf;",
+    		"\treturn binary_exponentiation((a % inf) * (a % inf) % inf,n / 2) % inf;",
 			"}"
 		]
 	},
