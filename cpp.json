@@ -155,5 +155,66 @@
     		"\t}", 
 			"}"
 		]
+	},
+	"ALGORITHMS_SEGMENT_TREE_NODE":{
+		"prefix": "segment_tree_node",
+		"body": [
+			"typedef struct Segment_Tree",
+			"{",
+    		"\tint left_index,right_index,val;",
+    		"\tstruct Segment_Tree *left_child,*right_child;",
+			"}Segment_Tree;",
+		]
+	},
+	"ALGORITHMS_SEGMENT_TREE_CREATE":{
+		"prefix": "segment_tree_create",
+		"body": [
+			"Segment_Tree * create_segment_tree(int l,int r,vi &vec)",
+			"{",
+    		"\tSegment_Tree * temp = new Segment_Tree();",
+    		"\ttemp->left_index = l;",
+    		"\ttemp->right_index = r;",
+    		"\tif(l == r)",
+    		"\ttemp->val = vec.at(l),temp->left_child = temp->right_child = nullptr;",
+    		"\telse",
+    		"\t{",
+        	"\t\ttemp->left_child = create_segment_tree(l,(l + r) / 2,vec);",
+        	"\t\ttemp->right_child = create_segment_tree((l + r) / 2 + 1,r,vec);",
+        	"\t\ttemp->val = temp->left_child->val + temp->right_child->val;",
+    		"\t}",
+    		"\treturn temp;",
+			"}"
+		]
+	},
+	"ALGORITHMS_SEGMENT_TREE_UPDATE":{
+		"prefix": "segment_tree_update",
+		"body": [
+			"Segment_Tree * update(Segment_Tree *root,int index,int val)",
+			"{",
+    		"\tif(root->left_index == root->right_index && root->left_index == index)",
+    		"\troot->val += val;",
+    		"\telse if(index <= root->right_index && index >= root->left_index)",
+    		"\t{",
+        	"\t\troot->left_child = update(root->left_child,index,val);",
+        	"\t\troot->right_child = update(root->right_child,index,val);",
+        	"\t\troot->val = root->left_child->val + root->right_child->val;",
+    		"\t}",
+    		"\treturn root;",
+			"}"
+		]
+	},
+	"ALGORITHMS_SEGMENT_TREE_QUERY":{
+		"prefix": "segment_tree_query",
+		"body": [
+			"int Segment_Tree_query(Segment_Tree * root,int l,int r)",
+			"{",
+    		"\tif(root->left_index > r || root->right_index < l)",
+    		"\treturn 0;",
+    		"\telse if(root->left_index >= l && root->right_index <= r)",
+    		"\treturn root->val;",
+    		"\telse",
+    		"\treturn Segment_Tree_query(root->left_child,l,r) + Segment_Tree_query(root->right_child,l,r);",
+			"}"
+		]
 	}
 }
