@@ -66,9 +66,8 @@ string add(string num1,string num2,int base)
 
 typedef struct Segment_Tree
 {
-    int left_index,right_index;
-    ll val;
-    struct Segment_Tree *left_child = nullptr,*right_child = nullptr;
+    int left_index,right_index,val;
+    struct Segment_Tree *left_child,*right_child;
 }Segment_Tree;
 
 Segment_Tree * create_segment_tree(int l,int r,vi &vec)
@@ -77,7 +76,7 @@ Segment_Tree * create_segment_tree(int l,int r,vi &vec)
     temp->left_index = l;
     temp->right_index = r;
     if(l == r)
-    temp->val = vec.at(l);
+    temp->val = vec.at(l),temp->left_child = temp->right_child = nullptr;
     else
     {
         temp->left_child = create_segment_tree(l,(l + r) / 2,vec);
@@ -100,14 +99,14 @@ Segment_Tree * update(Segment_Tree *root,int index,int val)
     return root;
 }
 
-ll Segment_Tree_sum(Segment_Tree * root,int l,int r)
+int Segment_Tree_query(Segment_Tree * root,int l,int r)
 {
     if(root->left_index > r || root->right_index < l)
     return 0;
     else if(root->left_index >= l && root->right_index <= r)
     return root->val;
     else
-    return Segment_Tree_sum(root->left_child,l,r) + Segment_Tree_sum(root->right_child,l,r);
+    return Segment_Tree_query(root->left_child,l,r) + Segment_Tree_query(root->right_child,l,r);
 }
 
 
