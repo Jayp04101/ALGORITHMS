@@ -216,5 +216,57 @@
     		"\treturn Segment_Tree_query(root->left_child,l,r) + Segment_Tree_query(root->right_child,l,r);",
 			"}"
 		]
+	},
+	"ALGORITHMS_MERGE_SORT":{
+		"prefix": "merge_sort",
+		"body": [
+			"void merge_sort(vi &vec,int l,int r)",
+			"{",
+    		"\tif(l == r)",
+    		"\treturn;",
+    		"\tint mid = (l + r) / 2;",
+    		"\tvi left(mid+1);",
+    		"\tvi right(r-mid);",
+    		"\tf(i,0,mid+1)",
+    		"\tleft.at(i) = vec.at(i);",
+    		"\tf(i,mid+1,r+1)",
+    		"\tright.at(i-mid-1) = vec.at(i);",
+	    	"\tmerge_sort(left,0,mid);",
+    		"\tmerge_sort(right,0,r-mid-1);",
+    		"\tmerge(vec,left,right,mid + 1,r-mid);",
+			"}"
+		]
+	},
+	"ALGORITHMS_MERGE":{
+		"prefix": "merge",
+		"body": [
+			"void merge(vi &vec,vi &left,vi &right,int left_size,int right_size)",
+			"{",
+    		"\tint le = 0, ri = 0;",
+    		"\tf(i,0,left_size + right_size)",
+    		"\tif(left.at(le) < right.at(ri))",
+    		"\t{",
+        	"\t\tvec.at(i) = left.at(le);",
+        	"\t\tle++;",
+        	"\t\tif(le == left_size)",
+        	"\t\t{",
+            "\t\t\twhile(ri != right_size)",
+            "\t\t\tvec.at(++i) = right.at(ri++);",
+            "\t\t\tbreak;",
+        	"\t\t}",
+    		"\t}",
+    		"\telse",
+    		"\t{",
+        	"\t\tvec.at(i) = right.at(ri);",
+        	"\t\tri++;",
+        	"\t\tif(ri == right_size)",
+        	"\t\t{",
+            "\t\twhile(le != left_size)",
+            "\t\tvec.at(++i) = left.at(le++);",
+            "\t\tbreak;",
+        	"\t\t}",
+    		"\t}",
+			"}"	
+		]
 	}
 }
