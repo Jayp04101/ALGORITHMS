@@ -41,31 +41,19 @@
 		"#define ummsi unordered_multimap<string,int>",
 		"#define f(i,a,b) for(int i = a; i < b; ++i)",
 		"#define fr(i,a,b) for(int i = a; i > b; --i)", 
-		"\n\n\n",
-		"class Solution",
-		"{",
-		"\tprivate:\n",
-		"\tpublic:",
-    		"\tSolution()",
-	    	"\t{\n",
-    		"\t}",
-    		"\t~Solution()",
-	    	"\t{\n",
-    		"\t}",
-		"};",
-		"\n\n\n",
+		"\n\n\n\n\n\n",
 		"int main()",
 		"{",
-	    	"\tios_base::sync_with_stdio(false);",
-    		"\tcin.tie(NULL);",
-    		"\tcout.tie(NULL);",
-    		"\tint t;",
-	    	"\tcin >> t;",
-    		"\twhile (t--)",
-	    	"\t{",
-        	"",
-	    	"\t}",
-    		"\treturn 0;",
+    	"\tios_base::sync_with_stdio(false);",
+    	"\tcin.tie(NULL);",
+    	"\tcout.tie(NULL);",
+    	"\tint t;",
+    	"\tcin >> t;",
+    	"\twhile (t--)",
+    	"\t{",
+        "",
+    	"\t}",
+    	"\treturn 0;",
 		"}"
 	]
 	},
@@ -204,7 +192,95 @@
 			"Segment_Tree * update(Segment_Tree *root,int index,int val)",
 			"{",
     		"\tif(root->left_index == root->right_index && root->left_index == index)",
-    		"\troot->val += val;",
+    		"\troot->val += val;",{
+2
+        // Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
+3
+        // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+4
+        // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+5
+        // same ids are connected.
+6
+        // Example:
+7
+        // "Print to console": {
+8
+        //      "prefix": "log",
+9
+        //      "body": [
+10
+        //              "console.log('$1');",
+11
+        //              "$2"
+12
+        //      ],
+13
+        //      "description": "Log output to console"
+14
+        // }
+15
+        "Competitive programming template":{
+16
+        "prefix": "my_template",
+17
+        "body": [
+18
+                "#include <bits/stdc++.h>",
+19
+                "#include<thread>",
+20
+                "using namespace std;",
+21
+                "#define inf 1000000007",
+22
+                "#define ll long long int",
+23
+                "#define vi vector<int>",
+24
+                "#define vb vector<bool>",
+25
+                "#define vc vector<char>",
+26
+                "#define vvc vector< vector<char> >",
+27
+                "#define vvi vector< vector<int> >",
+28
+                "#define vvb vector< vector<bool> >",
+29
+                "#define vvpii vector< vector< pair<int,int> > >",
+30
+                "#define vll vector<long long int>",
+31
+                "#define all(x) x.begin(),x.end()",
+32
+                "#define pii pair<int,int>",
+33
+                "#define pqpii priority_queue< pair<int,int> ,vector< pair<int,int> >,greater< pair<int,int> > >",
+34
+                "#define mii map<int,int>",
+35
+                "#define msi map<string,int>",
+36
+                "#define mmii multimap<int,int>",
+37
+                "#define mmsi multimap<string,int>",
+38
+                "#define umii unordered_map<int,int>",
+39
+                "#define umsi unordered_map<string,int>",
+40
+                "#define ummii unordered_multimap<int,int>",
+41
+                "#define ummsi unordered_multimap<string,int>",
+42
+                "#define f(i,a,b) for(int i = a; i < b; ++i)",
+43
+                "#define fr(i,a,b) for(int i = a; i > b; --i)", 
+44
+                "\n\n\n",
+45
+                "class Solution",
     		"\telse if(index <= root->right_index && index >= root->left_index)",
     		"\t{",
         	"\t\troot->left_child = update(root->left_child,index,val);",
