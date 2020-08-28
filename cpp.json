@@ -16,7 +16,6 @@
 	"prefix": "my_template",
 	"body": [
 		"#include <bits/stdc++.h>",
-		"#include<thread>",
 		"using namespace std;",
 		"#define inf 1000000007",
 		"#define ll long long int",
@@ -31,14 +30,6 @@
 		"#define all(x) x.begin(),x.end()",
 		"#define pii pair<int,int>",
 		"#define pqpii priority_queue< pair<int,int> ,vector< pair<int,int> >,greater< pair<int,int> > >",
-		"#define mii map<int,int>",
-		"#define msi map<string,int>",
-		"#define mmii multimap<int,int>",
-		"#define mmsi multimap<string,int>",
-		"#define umii unordered_map<int,int>",
-		"#define umsi unordered_map<string,int>",
-		"#define ummii unordered_multimap<int,int>",
-		"#define ummsi unordered_multimap<string,int>",
 		"#define f(i,a,b) for(int i = a; i < b; ++i)",
 		"#define fr(i,a,b) for(int i = a; i > b; --i)", 
 		"\n\n\n\n\n\n",
@@ -192,95 +183,7 @@
 			"Segment_Tree * update(Segment_Tree *root,int index,int val)",
 			"{",
     		"\tif(root->left_index == root->right_index && root->left_index == index)",
-    		"\troot->val += val;",{
-2
-        // Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
-3
-        // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-4
-        // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-5
-        // same ids are connected.
-6
-        // Example:
-7
-        // "Print to console": {
-8
-        //      "prefix": "log",
-9
-        //      "body": [
-10
-        //              "console.log('$1');",
-11
-        //              "$2"
-12
-        //      ],
-13
-        //      "description": "Log output to console"
-14
-        // }
-15
-        "Competitive programming template":{
-16
-        "prefix": "my_template",
-17
-        "body": [
-18
-                "#include <bits/stdc++.h>",
-19
-                "#include<thread>",
-20
-                "using namespace std;",
-21
-                "#define inf 1000000007",
-22
-                "#define ll long long int",
-23
-                "#define vi vector<int>",
-24
-                "#define vb vector<bool>",
-25
-                "#define vc vector<char>",
-26
-                "#define vvc vector< vector<char> >",
-27
-                "#define vvi vector< vector<int> >",
-28
-                "#define vvb vector< vector<bool> >",
-29
-                "#define vvpii vector< vector< pair<int,int> > >",
-30
-                "#define vll vector<long long int>",
-31
-                "#define all(x) x.begin(),x.end()",
-32
-                "#define pii pair<int,int>",
-33
-                "#define pqpii priority_queue< pair<int,int> ,vector< pair<int,int> >,greater< pair<int,int> > >",
-34
-                "#define mii map<int,int>",
-35
-                "#define msi map<string,int>",
-36
-                "#define mmii multimap<int,int>",
-37
-                "#define mmsi multimap<string,int>",
-38
-                "#define umii unordered_map<int,int>",
-39
-                "#define umsi unordered_map<string,int>",
-40
-                "#define ummii unordered_multimap<int,int>",
-41
-                "#define ummsi unordered_multimap<string,int>",
-42
-                "#define f(i,a,b) for(int i = a; i < b; ++i)",
-43
-                "#define fr(i,a,b) for(int i = a; i > b; --i)", 
-44
-                "\n\n\n",
-45
-                "class Solution",
+    		"\troot->val += val;",
     		"\telse if(index <= root->right_index && index >= root->left_index)",
     		"\t{",
         	"\t\troot->left_child = update(root->left_child,index,val);",
@@ -354,6 +257,53 @@
             "\t\tbreak;",
         	"\t\t}",
     		"\t}",
+			"}"	
+		]
+	},
+	"ALGORITHMS_MATRIX_EXPONENTIATION":{
+		"prefix": "matrix_exponentiation",
+		"body": [
+			"vvi matrix_exponentiation(vvi &matrix,int n)",
+			"{",
+    		"\tif(n == 0)",
+    		"\t{", 
+        	"\t\tvvi identity_matrix(matrix.size(),vi(matrix.size()));",
+        	"\t\tf(i,0,matrix.size())",
+        	"\t\tidentity_matrix[i][i] = 1;",
+        	"\t\treturn identity_matrix;",
+    		"\t}",
+    		"\tvvi temp(matrix.size(),vi(matrix.size()));",
+	    	"\ttemp = multiply(matrix,matrix);",
+    		"\tvvi mat(matrix.size(),vi(matrix.size()));",
+	    	"\tmat = matrix_exponentiation(temp,n / 2);",
+    		"\tif(n & 1)", 
+    		"\treturn multiply(matrix,mat);",
+    		"\treturn mat;",
+			"}"
+		]
+	},
+	"ALGORITHMS_MATRIX_EXPONENTIATION_MULTIPLY":{
+		"prefix": "multiply",
+		"body": [
+			"vvi multiply(vvi &A,vvi &B)",
+			"{",
+    		"\tvvi result(A.size(),vi(A.size()));",
+    		"\tf(i,0,A.size())",
+    		"\tf(j,0,B.size())",
+   	 		"\tresult[i][j] = mul(A,B,i,j,A.size());",
+    		"\treturn result;",
+			"}"
+		]
+	},
+	"ALGORITHMS_MATRIX_EXPONENTIATION_MUL":{
+		"prefix": "mul",
+		"body": [
+			"int mul(vvi &A, vvi &B, int i, int j, int k)",
+			"{",
+   	 		"\tint sum = 0;",
+    		"\tf(t,0,k)",
+    		"\tsum = (sum % inf + (1LL * (A[i][t] % inf) * (B[t][j] % inf)) % inf) % inf;",
+    		"\treturn sum;",
 			"}"	
 		]
 	}
