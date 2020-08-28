@@ -215,3 +215,39 @@ void merge_sort(vi &vec,int l,int r)
     merge_sort(right,0,r-mid-1);
     merge(vec,left,right,mid + 1,r-mid);
 }
+
+int mul(vvi &A, vvi &B, int i, int j, int k)
+{
+    int sum = 0;
+    f(t,0,k)
+    sum = (sum % inf + (1LL * (A[i][t] % inf) * (B[t][j] % inf)) % inf) % inf;
+    return sum;
+}
+ 
+vvi multiply(vvi &A,vvi &B)
+{
+    vvi result(A.size(),vi(A.size()));
+    f(i,0,A.size())
+    f(j,0,B.size())
+    result[i][j] = mul(A,B,i,j,A.size());
+    return result;
+}
+ 
+ 
+vvi matrix_exponentiation(vvi &matrix,int n)
+{
+    if(n == 0)
+    {
+        vvi identity_matrix(matrix.size(),vi(matrix.size()));
+        f(i,0,matrix.size())
+        identity_matrix[i][i] = 1;
+        return identity_matrix;
+    }
+    vvi temp(matrix.size(),vi(matrix.size()));
+    temp = multiply(matrix,matrix);
+    vvi mat(matrix.size(),vi(matrix.size()));
+    mat = matrix_exponentiation(temp,n / 2);
+    if(n & 1) 
+    return multiply(matrix,mat);
+    return mat;
+}
