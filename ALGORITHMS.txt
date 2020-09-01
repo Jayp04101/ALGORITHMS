@@ -251,3 +251,31 @@ vvi matrix_exponentiation(vvi &matrix,int n)
     return multiply(matrix,mat);
     return mat;
 }
+
+
+void articulation_points(int src, vvi &graph, vi &disc, vi &low, vb &visited, vb &ap, vi &parent)
+{
+    int child = 0;
+    visited[src] = true;
+    disc[src] = low[src] = ++discovery_time;
+    for (int node : graph[src])
+    if (visited[node])
+    {
+        if (node ^ parent[src])
+        low[src] = min(low[src], disc[node]);
+    }
+    else
+    {
+        ++child;
+        parent[node] = src;
+        articulation_points(node, graph, disc, low, visited, ap, parent);
+        low[src] = min(low[src], low[node]);
+        if (parent[src] == -1)
+        {
+            if (child > 1)
+            ap[src] = true;
+        }
+        else if (low[node] >= disc[src])
+        ap[src] = true;
+    }
+}
