@@ -18,20 +18,6 @@
       "#include <bits/stdc++.h>",
       "using namespace std;",
       "#define inf 1000000007",
-      "#define ll long long int",
-      "#define vi vector<int>",
-      "#define vb vector<bool>",
-      "#define vc vector<char>",
-      "#define vvc vector< vector<char> >",
-      "#define vvi vector< vector<int> >",
-      "#define vvb vector< vector<bool> >",
-      "#define vvpii vector< vector< pair<int,int> > >",
-      "#define vll vector<long long int>",
-      "#define all(x) x.begin(),x.end()",
-      "#define pii pair<int,int>",
-      "#define pqpii priority_queue< pair<int,int> ,vector< pair<int,int> >,greater< pair<int,int> > >",
-      "#define f(i,a,b) for(int i = a; i < b; ++i)",
-      "#define fr(i,a,b) for(int i = a; i > b; --i)",
       "\n\n\n\n\n\n",
       "int main()",
       "{",
@@ -64,7 +50,7 @@
   "ALGORITHMS_DSU_ROOT": {
     "prefix": "dsu_root",
     "body": [
-      "int dsu_root(vi &vec,int i)",
+      "int dsu_root(vector<int> &vec,int i)",
       "{",
       "\twhile(vec[i] != i)",
       "\t{",
@@ -78,7 +64,7 @@
   "ALGORITHMS_DSU_UNION_FIND": {
     "prefix": "dsu_union_find",
     "body": [
-      "void dsu_union_find(vi &arr,vi &size,int a,int b)",
+      "void dsu_union_find(vector<int> &arr,vector<int> &size,int a,int b)",
       "{",
       "\tint root_a = dsu_root(arr,a);",
       "\tint root_b = dsu_root(arr,b);",
@@ -100,7 +86,7 @@
   "ALGORITHMS_SIEVE_OF_ERATOSTHENES": {
     "prefix": "sieve_of_eratosthenes",
     "body": [
-      "void sieve_of_eratosthenes(vb &prime)",
+      "void sieve_of_eratosthenes(vector<bool> &prime)",
       "{",
       "\tprime[1] = false;",
       "\tfor(int p = 2; p <= 1000; ++p)",
@@ -120,8 +106,8 @@
       "{",
       "\tpqpii pq;",
       "\tpq.push({0,src});",
-      "\tvi dist(city.size(),INT_MAX),path;",
-      "\tvb spt(city.size());",
+      "\tvector<int> dist(city.size(),INT_MAX),path;",
+      "\tvector<bool> spt(city.size());",
       "\tdist[src] = 0;",
       "\tpath.push_back(src);",
       "\tspt[src] = true;",
@@ -160,7 +146,7 @@
   "ALGORITHMS_SEGMENT_TREE_CREATE": {
     "prefix": "segment_tree_create",
     "body": [
-      "Segment_Tree * create_segment_tree(int l,int r,vi &vec)",
+      "Segment_Tree * create_segment_tree(int l,int r,vector<int> &vec)",
       "{",
       "\tSegment_Tree * temp = new Segment_Tree();",
       "\ttemp->left_index = l;",
@@ -211,13 +197,13 @@
   "ALGORITHMS_MERGE_SORT": {
     "prefix": "merge_sort",
     "body": [
-      "void merge_sort(vi &vec,int l,int r)",
+      "void merge_sort(vector<int> &vec,int l,int r)",
       "{",
       "\tif(l == r)",
       "\treturn;",
       "\tint mid = (l + r) / 2;",
-      "\tvi left(mid+1);",
-      "\tvi right(r-mid);",
+      "\tvector<int> left(mid+1);",
+      "\tvector<int> right(r-mid);",
       "\tf(i,0,mid+1)",
       "\tleft.at(i) = vec.at(i);",
       "\tf(i,mid+1,r+1)",
@@ -231,7 +217,7 @@
   "ALGORITHMS_MERGE": {
     "prefix": "merge",
     "body": [
-      "void merge(vi &vec,vi &left,vi &right,int left_size,int right_size)",
+      "void merge(vector<int> &vec,vector<int> &left,vector<int> &right,int left_size,int right_size)",
       "{",
       "\tint le = 0, ri = 0;",
       "\tf(i,0,left_size + right_size)",
@@ -263,18 +249,18 @@
   "ALGORITHMS_MATRIX_EXPONENTIATION": {
     "prefix": "matrix_exponentiation",
     "body": [
-      "vvi matrix_exponentiation(vvi &matrix,int n)",
+      "vector<vector<int>> matrix_exponentiation(vector<vector<int>> &matrix,int n)",
       "{",
       "\tif(n == 0)",
       "\t{",
-      "\t\tvvi identity_matrix(matrix.size(),vi(matrix.size()));",
+      "\t\tvector<vector<int>> identity_matrix(matrix.size(),vector<int>(matrix.size()));",
       "\t\tf(i,0,matrix.size())",
       "\t\tidentity_matrix[i][i] = 1;",
       "\t\treturn identity_matrix;",
       "\t}",
-      "\tvvi temp(matrix.size(),vi(matrix.size()));",
+      "\tvector<vector<int>> temp(matrix.size(),vector<int>(matrix.size()));",
       "\ttemp = multiply(matrix,matrix);",
-      "\tvvi mat(matrix.size(),vi(matrix.size()));",
+      "\tvector<vector<int>> mat(matrix.size(),vector<int>(matrix.size()));",
       "\tmat = matrix_exponentiation(temp,n / 2);",
       "\tif(n & 1)",
       "\treturn multiply(matrix,mat);",
@@ -285,9 +271,9 @@
   "ALGORITHMS_MATRIX_EXPONENTIATION_MULTIPLY": {
     "prefix": "multiply",
     "body": [
-      "vvi multiply(vvi &A,vvi &B)",
+      "vector<vector<int>> multiply(vector<vector<int>> &A,vector<vector<int>> &B)",
       "{",
-      "\tvvi result(A.size(),vi(A.size()));",
+      "\tvector<vector<int>> result(A.size(),vector<int>(A.size()));",
       "\tf(i,0,A.size())",
       "\tf(j,0,B.size())",
       "\tresult[i][j] = mul(A,B,i,j,A.size());",
@@ -298,7 +284,7 @@
   "ALGORITHMS_MATRIX_EXPONENTIATION_MUL": {
     "prefix": "mul",
     "body": [
-      "int mul(vvi &A, vvi &B, int i, int j, int k)",
+      "int mul(vector<vector<int>> &A, vector<vector<int>> &B, int i, int j, int k)",
       "{",
       "\tint sum = 0;",
       "\tf(t,0,k)",
@@ -310,7 +296,7 @@
   "ALGORITHMS_ARTICULATION_POINTS": {
     "prefix": "articulation_points",
     "body": [
-      "void articulation_points(int src, vvi &graph, vi &disc, vi &low, vb &visited, vb &ap, vi &parent)",
+      "void articulation_points(int src, vector<vector<int>> &graph, vector<int> &disc, vector<int> &low, vector<bool> &visited, vector<bool> &ap, vector<int> &parent)",
       "{",
       "\tint child = 0;",
       "\tvisited[src] = true;",
@@ -334,6 +320,32 @@
       "\t\t}",
       "\t\telse if (low[node] >= disc[src])",
       "\t\tap[src] = true;",
+      "\t}",
+      "}"
+    ]
+  },
+  "ALGORITHMS_BRIDGES": {
+    "prefix": "bridges",
+    "body": [
+      "void bridges(int src, vector<vector<int>> &graph, vector<int> &disc, vector<int> &low, vector<bool> &visited, int parent, vector<pair<int, int>> &result)",
+      "{",
+      "\tstatic int discovery_time;",
+      "\tvisited[src] = true;",
+      "\tdisc[src] = low[src] = ++discovery_time;",
+      "\tfor (int node : graph[src])",
+      "\tif (visited[node])",
+      "\t{",
+      "\t\tif (node ^ parent)",
+      "\t\tlow[src] = min(low[src], disc[node]);",
+      "\t\tif (disc[src] < disc[node] && low[node] > disc[src])",
+      "\t\tresult.push_back({src, node});",
+      "\t}",
+      "\telse",
+      "\t{",
+      "\t\tbridges(node, graph, disc, low, visited, src, result);",
+      "\t\tlow[src] = min(low[src], low[node]);",
+      "\t\tif (low[node] > disc[src])",
+      "\t\tresult.push_back({src, node});",
       "\t}",
       "}"
     ]
