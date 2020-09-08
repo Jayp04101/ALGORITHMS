@@ -112,7 +112,7 @@ int Segment_Tree_query(Segment_Tree * root,int l,int r)
 
 void dijkstra(vvpii &city,int src)
 {
-    pqpii pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     pq.push({0,src});
     vector<int> dist(city.size(),INT_MAX),path;
     vector<bool> spt(city.size());
