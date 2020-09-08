@@ -349,5 +349,36 @@
       "\t}",
       "}"
     ]
+  },
+  "ALGORITHMS_EXTENDED_EUCLIDEAN_ALGORITHM": {
+    "prefix": "extended_euclidean_algorithm",
+    "body": [
+      "void extended_euclidean_algorithm(long long int a, long long int m, long long int &x, long long int &y)",
+      "{",
+      "\tif (m == 0)",
+      "\t{",
+      "\t\tx = 1;",
+      "\t\ty = 0;",
+      "\t}",
+      "\telse",
+      "\t{",
+      "\t\tlong long int x1, y1;",
+      "\t\textended_euclidean_algorithm(m, a % m, x1, y1);",
+      "\t\tx = y1;",
+      "\t\ty = x1 - (a / m) * y1;",
+      "\t}",
+      "}"
+    ]
+  },
+  "ALGORITHMS_MODULO_INVERSE": {
+    "prefix": "modulo_inverse",
+    "body": [
+      "long long int modulo_inverse(long long int a, long long int m)",
+      "{",
+      "\tlong long int x, y;",
+      "\textended_euclidean_algorithm(a, m, x, y);",
+      "\treturn (x % m + m) % m;",
+      "}"
+    ]
   }
 }
