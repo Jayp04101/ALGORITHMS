@@ -303,3 +303,26 @@ void bridges(int src, vector<vector<int>> &graph, vector<int> &disc, vector<int>
                 result.push_back({src, node});
         }
 }
+
+void extended_euclidean_algorithm(long long int a, long long int m, long long int &x, long long int &y)
+{
+    if (m == 0)
+    {
+        x = 1;
+        y = 0;
+    }
+    else
+    {
+        long long int x1, y1;
+        extended_euclidean_algorithm(m, a % m, x1, y1);
+        x = y1;
+        y = x1 - (a / m) * y1;
+    }
+}
+
+long long int modulo_inverse(long long int a, long long int m)
+{
+    long long int x, y;
+    extended_euclidean_algorithm(a, m, x, y);
+    return (x % m + m) % m;
+}
