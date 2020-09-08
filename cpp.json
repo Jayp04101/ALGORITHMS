@@ -104,7 +104,7 @@
     "body": [
       "void dijkstra(vvpii &city,int src)",
       "{",
-      "\tpqpii pq;",
+      "\tpriority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;",
       "\tpq.push({0,src});",
       "\tvector<int> dist(city.size(),INT_MAX),path;",
       "\tvector<bool> spt(city.size());",
