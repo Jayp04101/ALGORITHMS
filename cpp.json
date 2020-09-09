@@ -380,5 +380,19 @@
       "\treturn (x % m + m) % m;",
       "}"
     ]
+  },
+  "ALGORITHMS_SPLIT_A_STRING": {
+    "prefix": "split_string",
+    "body": [
+      "vector<string> split_string(string s, char delim)",
+      "{",
+      "\tstringstream ss(s);",
+      "\tstring temp;",
+      "\tvector<string> result;",
+      "\twhile (getline(ss, temp, delim))",
+      "\tresult.push_back(temp);",
+      "\treturn result;",
+      "}"
+    ]
   }
 }
