@@ -37,7 +37,7 @@
   "ALGORITHMS_BINARY_EXPONENTIATION": {
     "prefix": "binary_exponentiation",
     "body": [
-      "ll binary_exponentiation(const ll &a,const ll &n)",
+      "long long int binary_exponentiation(const long long int &a,const long long int &n)",
       "{",
       "\tif(n == 0)",
       "\treturn 1;",
